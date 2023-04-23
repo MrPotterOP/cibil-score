@@ -1,11 +1,11 @@
-import bank from "../models/bank.js";
+import admin from "../models/admin.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
 
 
 
-const PostBankLogin = (req, res) =>{
+const PostAdminLogin = (req, res) =>{
     const {name, password} = req.body;
 
     //Functional Components
@@ -22,7 +22,7 @@ const PostBankLogin = (req, res) =>{
     }
 
 
-    const verifyBank = (hash, id, name)=>{
+    const verifyAdmin = (hash, id, name)=>{
         bcrypt.compare(password.toString(), hash, (err, succ)=>{
             if(err){
                 return res.status(401).json({msg: "Incorrect password"});
@@ -34,13 +34,13 @@ const PostBankLogin = (req, res) =>{
         });
     }
 
-    const checkBank = ()=>{
-        bank.findOne({name})
+    const checkAdmin = ()=>{
+        admin.findOne({name})
         .then(doc =>{
             if(doc){
-                verifyBank(doc.password, doc._id, doc.name);
+                verifyAdmin(doc.password, doc._id, doc.name);
             }else{
-                return res.status(401).json({msg: "Bank not registered. try to register"})
+                return res.status(401).json({msg: "Invalid Admin Name"})
             }
         })
         .catch(err =>{
@@ -54,9 +54,9 @@ const PostBankLogin = (req, res) =>{
     if(!name || !password){
         return res.status(401).json({msg: "Input valid data"});
     }else{
-        checkBank();
+        checkAdmin();
     }
 }
 
 
-export default PostBankLogin;
+export default PostAdminLogin;
