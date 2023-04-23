@@ -12,6 +12,8 @@ import postObjection from "../controllers/PostObjection.js";
 import postAdminLogin from "../controllers/PostAdminLogin.js";
 import checkAdmin from "../middlewares/checkAdmin.js";
 import postRemoveObjection from "../controllers/PostRemoveObjection.js";
+import getUserScore from "../controllers/GetUserScore.js";
+import patchUserScore from "../controllers/PatchUserScore.js";
 
 
 Router.get("/test", (req, res)=>{
@@ -25,6 +27,8 @@ Router.post("/userlogin", postUserLogin);
 Router.post("/objection", checkUser, postObjection);
 Router.post("/adminlogin", postAdminLogin);
 Router.post("/removeobjection", checkAdmin, postRemoveObjection);
+Router.get("/userscore", checkUser, getUserScore);
+Router.patch("/userscore", patchUserScore);
 
 
 
