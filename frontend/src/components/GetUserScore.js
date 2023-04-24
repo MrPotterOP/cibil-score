@@ -121,14 +121,16 @@ const GetUserScore = ()=>{
                     <p>Your CIBIL score is {data.score}</p>
                     <ScoreBar />
 
-                    <div className="actions">
-                        <p>Actions</p>
-                        <button onClick={() => handleLogout()} className="btn-login">Logout</button>
-                    </div>
+                    
                 </div>
 
                 <div className="user-score-right">
                     {(data.tickets.length > 0) ? <Tickets /> : <p>You have 0 tickets open.</p>}
+                </div>
+
+                <div className="actions">
+                        <p>Actions</p>
+                        <button onClick={() => handleLogout()} className="btn-login">Logout</button>
                 </div>
             </div>
         )

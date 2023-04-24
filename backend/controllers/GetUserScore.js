@@ -10,7 +10,6 @@ const getUserScore = (req, res) =>{
     const Score = async (docs)=>{
 
         let tickets = [];
-        console.log(docs);
         await docs.forEach(i =>{
         
             let iss = (i.issue === 0) ? "Unpayed Loan" : "Check Bounce";
