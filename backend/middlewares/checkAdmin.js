@@ -1,4 +1,5 @@
 import admin from "../models/admin.js";
+import jwt from "jsonwebtoken";
 
 
 
@@ -7,8 +8,8 @@ const checkAdmin = (req, res, next) =>{
 
     //Functional Components
 
-    const checkAdmin = (id)=>{
-        admin.findOne({id})
+    const checkAdmin = (id, name)=>{
+        admin.findOne({name})
         .then(doc=>{
             if(doc){
                 req.user = {id: doc._id, name: doc.name}
@@ -37,7 +38,7 @@ const checkAdmin = (req, res, next) =>{
             }else if(!doc){
                 return res.status(401).json({msg: "Unuthorized Access."});
             }else{
-                checkAdmin(doc.id);
+                checkAdmin(doc.id, doc.name);
             }
         })
         

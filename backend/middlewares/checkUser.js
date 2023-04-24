@@ -5,7 +5,6 @@ import jwt from "jsonwebtoken";
 
 const checkBank = (req, res, next)=>{
     const rawToken = req.headers.authorization;
-
     // Handlers
     const checkUser = (id) =>{
         user.findOne({_id: id})
@@ -34,8 +33,8 @@ const checkBank = (req, res, next)=>{
 
         const token = rawToken.split(" ");
         
-        if(token[1] === "dummy"){
-            req.user = {name: token[0], dummy: true}
+        if(token[0] === "dummy"){
+            req.user = {name: token[1], dummy: true}
             next();
         }else{
             jwt.verify(token[1], process.env.JWT_SECRET, (err, doc)=>{

@@ -41,7 +41,7 @@ const postUserLogin = (req, res)=>{
             if(doc){
                 verifyUser(doc.password, doc._id, doc.name);
             }else{
-                return res.json({token: name, dummyToken: true});
+                return res.json({token: "dummy " + name, dummyToken: true});
             }
         })
         .catch(err =>{

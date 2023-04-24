@@ -13,7 +13,7 @@ const getUserScore = (req, res) =>{
         await docs.forEach(i =>{
         
             let iss = (i.issue === 0) ? "Unpayed Loan" : "Check Bounce";
-            let amm = (i.ammount > 999) ? Math.floor(i.ammount / 10000) * 2 : 0;
+            let amm = (i.ammount > 999) ? Math.floor(i.ammount / 10000) * 1 : 0;
             if(i.issue === 0){
                 score = score - 300;
             }else if(i.issue === 1){
@@ -48,11 +48,7 @@ const getUserScore = (req, res) =>{
     if(!name){
         return res.status(401).json({msg: "Invalid Info"});
     }else{
-        if(dummy){
-            return res.json({name, score, tickets: []});
-        }else{
-            genScore();
-        }
+        genScore()
     }
 }
 

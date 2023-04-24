@@ -14,6 +14,7 @@ import checkAdmin from "../middlewares/checkAdmin.js";
 import postRemoveObjection from "../controllers/PostRemoveObjection.js";
 import getUserScore from "../controllers/GetUserScore.js";
 import patchUserScore from "../controllers/PatchUserScore.js";
+import GetObjections from "../controllers/GetObjections.js";
 
 
 Router.get("/test", (req, res)=>{
@@ -28,6 +29,7 @@ Router.post("/objection", checkUser, postObjection);
 Router.post("/adminlogin", postAdminLogin);
 Router.post("/removeobjection", checkAdmin, postRemoveObjection);
 Router.get("/userscore", checkUser, getUserScore);
+Router.get("/objections", checkAdmin, GetObjections);
 Router.patch("/userscore", patchUserScore);
 
 
